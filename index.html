@@ -7,49 +7,81 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #1e2124;
-            color: #f0f0f0;
+            background-color: #f9f9f9;
+            color: #333;
             text-align: center;
             padding: 20px;
         }
         h1 {
-            color: #ffcc00;
+            color: #4b0082;
         }
         p {
             margin: 10px 0;
+            line-height: 1.5;
+        }
+        strong {
+            font-weight: bold;
+        }
+        .status {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .status span {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .online {
+            background-color: #28a745;
+            color: white;
+        }
+        .offline {
+            background-color: #dc3545;
+            color: white;
         }
         .button {
             display: inline-block;
-            margin: 10px;
+            margin-top: 20px;
             padding: 15px 30px;
-            background-color: #ff6600;
+            background-color: #4b0082;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
+            border: none;
         }
         .button:hover {
-            background-color: #e55d00;
+            background-color: #370062;
         }
     </style>
 </head>
 <body>
-    <h1>Valheim Server Instructions</h1>
-    <p>The dedicated server, IP address, port, and password will be provided by <strong>Krsna</strong>.</p>
-    <p>To connect:</p>
-    <ol>
-        <li>Load up Valheim.</li>
-        <li>Press <strong>Start Game</strong>.</li>
-        <li>Go into <strong>Join Game</strong>.</li>
-        <li>Enter the server details provided to you to connect.</li>
-    </ol>
-    <a href="#" class="button" onclick="toggleServer()">Turn Server On/Off</a>
+    <h1>Valheim Server</h1>
+    <p>The dedicated server, IP and Port Address,</p>
+    <p>as well as the password, will be provided by <strong>Krsna</strong>.</p>
+    <p>To connect, load up Valheim, press <strong>Start game</strong>, go into <strong>Join Game</strong>,</p>
+    <p>and then enter in the details to connect.</p>
+
+    <div class="status">
+        The server is currently <span id="serverStatus" class="online">online</span>.
+    </div>
+
+    <button class="button" onclick="toggleServer()">Toggle Server Status</button>
 
     <script>
+        let isOnline = true;
+
         function toggleServer() {
-            alert("This button will trigger your server on/off function.");
-            // Add code to call your server control backend if integrated.
+            isOnline = !isOnline;
+            const statusElement = document.getElementById('serverStatus');
+            if (isOnline) {
+                statusElement.textContent = 'online';
+                statusElement.className = 'online';
+            } else {
+                statusElement.textContent = 'offline';
+                statusElement.className = 'offline';
+            }
         }
     </script>
 </body>
